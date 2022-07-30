@@ -1,0 +1,25 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  ci:
+    name: "Lint and Test"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+          cache: "npm"
+      - run: npm install
+      - run: npm run lint
+      - run: npm run test:ci && npx codecov --token=$CODECOV_TOKEN
+        env:
+          # 1. Get here:
+          # https://app.codecov.io/gh/tatethurston/astrojs-service-worker/settings
+          # 2. Upload here:
+          # https://github.com/tatethurston/astrojs-service-worker/settings/secrets/actions/new
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
