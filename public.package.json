@@ -1,6 +1,6 @@
 {
   "name": "astrojs-service-worker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An Astro integration to generate a Service Worker. Powered by Workbox.",
   "license": "MIT",
   "author": "Tate <tatethurston@gmail.com>",
