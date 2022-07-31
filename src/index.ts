@@ -51,7 +51,7 @@ const createPlugin = (options: ServiceWorkerConfig = {}): AstroIntegration => {
         const autoRegister = options.registration?.autoRegister ?? true;
         if (autoRegister) {
           injectScript(
-            "page",
+            "head-inline",
             `\
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/${SW_NAME}');
