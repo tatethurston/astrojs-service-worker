@@ -25,7 +25,7 @@
 
 ## What is this? 🧐
 
-Coming Soon!
+A minimal wrapper around [Workbox](https://developers.google.com/web/tools/workbox) to quickly add a [service worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) to your [Astro](https://astro.build/) static site. Get precached pages and offline support out of the box.
 
 ## Examples 🚀
 
@@ -35,10 +35,71 @@ Coming Soon!
 
 1. Add this package to your project:
    - `npm install astrojs-service-worker` or `yarn add astrojs-service-worker`
+1. Add `astrojs-service-worker` to your [astro.config.mjs](https://docs.astro.build/en/reference/configuration-reference/) integrations:
 
-## Highlights
+```diff
+import { defineConfig } from "astro/config";
++ import serviceWorker from "astrojs-service-worker";
 
-Coming Soon!
+export default defineConfig({
++  integrations: [serviceWorker()],
+});
+```
+
+## API Overview 🛠
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+  <td>registration.autoRegister</td>
+<td>
+
+Autoregister the service worker.
+
+If `false`, then the application must initialize the service worker by invoking `register`. Set this to `false` if you'd like to take control over when you service worker is initialized. You'll then need to add something like the following to your application:
+
+```javascript
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js");
+}
+```
+
+Defaults to `true`. Recommended: `true`.
+
+</td>
+</td>
+  <td>boolean | undefined</td>
+</tr>
+
+<tr>
+  <td>workbox</td>
+<td>
+Options passed to `worbox-build`. See all available configuration options [here](https://developer.chrome.com/docs/workbox/modules/workbox-build/)
+
+Defaults to `GenerateSW` which will generate a service worker.
+
+Note: `injectManifest` is not supported at this time. If you would like it to be supported, please [open an issue](https://github.com/tatethurston/astrojs-service-worker/issues/new")
+
+</td>
+  <td>InjectManifestOptions | GenerateSWOptions</td>
+</tr>
+  </tbody>
+</table>
+
+## Common Service Worker Pitfalls ⚠️
+
+You must serve your application over HTTPS in production environments. [Service Workers must be served from the site's origin over HTTPS](https://developers.google.com/web/fundamentals/primers/service-workers).
+
+Some browsers special case `localhost`, so this is may not necessary during local development. HTTPS is _not_ handled by this library.
+
+The service worker origin constraint means that service workers can not control pages on a different subdomain. Eg `mysite.com` can not be controlled by a service worker if that was served from a subdomain such as `mycdn.mysite.com`.
 
 ## Contributing 👫
 
