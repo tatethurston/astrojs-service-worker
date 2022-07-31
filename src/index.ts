@@ -48,7 +48,8 @@ const createPlugin = (options: ServiceWorkerConfig = {}): AstroIntegration => {
     name: PKG_NAME,
     hooks: {
       "astro:config:setup": ({ injectScript }) => {
-        if (options.registration?.autoRegister) {
+        const autoRegister = options.registration?.autoRegister ?? true;
+        if (autoRegister) {
           injectScript(
             "page",
             `\
