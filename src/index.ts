@@ -1,5 +1,5 @@
 import type { AstroIntegration } from "astro";
-import { join } from "path";
+import { join } from "node:path";
 import {
   generateSW,
   type GenerateSWOptions,
@@ -7,6 +7,16 @@ import {
 } from "workbox-build";
 
 export interface ServiceWorkerConfig {
+  /**
+   * Enable the service worker in local development.
+   *
+   * The service worker's precaching of static files will prevent hot module reloading during development.
+   *
+   * If `false` then the service worker will not be registered and any previously installed service workers will be cleared.
+   *
+   * Defaults to `false`. Recommended: `false` for general development, `true` when testing or debugging your application's service worker.
+   */
+  enableInDevelopment?: boolean;
   registration?: {
     /**
      * Autoregister the service worker.
@@ -47,16 +57,30 @@ const createPlugin = (options: ServiceWorkerConfig = {}): AstroIntegration => {
   return {
     name: PKG_NAME,
     hooks: {
-      "astro:config:setup": ({ injectScript }) => {
+      "astro:config:setup": ({ injectRoute, injectScript }) => {
         const autoRegister = options.registration?.autoRegister ?? true;
         if (autoRegister) {
           injectScript(
             "head-inline",
             `\
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/${SW_NAME}');
-  }`
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/${SW_NAME}').then((sw) => {
+    console.log('here');
+  });
+}`
           );
+        }
+        const enableInDevelopment = options.enableInDevelopment ?? false;
+        const isDevelopment =
+          process.env.NODE_ENV === "development" ||
+          process.env.NODE_ENV === undefined;
+
+        if (!enableInDevelopment && isDevelopment) {
+          injectRoute({
+            pattern: `/${SW_NAME}`,
+            entryPoint: new URL("./service-worker.js.js", import.meta.url)
+              .pathname,
+          });
         }
       },
       "astro:build:done": async ({ dir }) => {
@@ -71,6 +95,10 @@ const createPlugin = (options: ServiceWorkerConfig = {}): AstroIntegration => {
         const defaults = {
           swDest: join(out, SW_NAME),
           globDirectory: out,
+          clientsClaim: true,
+          skipWaiting: true,
+          sourcemap: false,
+          cleanupOutdatedCaches: true,
         };
 
         try {

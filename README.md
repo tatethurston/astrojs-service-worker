@@ -1,6 +1,6 @@
 # Astro Service Worker
 
-<blockquote>An Astro integration to generate a Service Worker. Powered by Workbox.</blockquote>
+<blockquote>An Astro integration that generates a Service Worker. Powered by Workbox.</blockquote>
 
 <br />
 
@@ -26,10 +26,6 @@
 ## What is this? 🧐
 
 A minimal wrapper around [Workbox](https://developers.google.com/web/tools/workbox) to quickly add a [service worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) to your [Astro](https://astro.build/) static site. Get precached pages and offline support out of the box.
-
-## Examples 🚀
-
-Coming Soon!
 
 ## Installation & Usage 📦
 
@@ -57,6 +53,23 @@ export default defineConfig({
     </tr>
   </thead>
   <tbody>
+<tr>
+  <td>enableInDevelopment</td>
+<td>
+
+Enable the service worker in local development.
+
+The service worker's precaching of static files will prevent hot module reloading during development.
+
+If `false` then the service worker will not be registered and any previously installed service workers will be cleared.
+
+Defaults to `false`. Recommended: `false` for general development, `true` when testing or debugging your application's service worker.
+
+</td>
+</td>
+  <td>boolean | undefined</td>
+</tr>
+
 <tr>
   <td>registration.autoRegister</td>
 <td>
