@@ -31,7 +31,7 @@ A minimal wrapper around [Workbox](https://developers.google.com/web/tools/workb
 
 1. Add this package to your project:
    - `npm install astrojs-service-worker` or `yarn add astrojs-service-worker`
-1. Add `astrojs-service-worker` to your [astro.config.mjs](https://docs.astro.build/en/reference/configuration-reference/) integrations:
+2. Add `astrojs-service-worker` to your [astro.config.mjs](https://docs.astro.build/en/reference/configuration-reference/) integrations:
 
 ```diff
 import { defineConfig } from "astro/config";
@@ -42,7 +42,7 @@ export default defineConfig({
 });
 ```
 
-1. That's it! A service worker that precaches all of your build's static assets will be generated. Page navigations will be served from the service worker's cache instead of making network calls, speeding up your page views and enabling offline viewing 🙌.
+3. That's it! A service worker that precaches all of your build's static assets will be generated. Page navigations will be served from the service worker's cache instead of making network calls, speeding up your page views and enabling offline viewing 🙌.
 
 Note that in local development a no-op service worker is generated, otherwise service workers interfere with hot module reloading (because they intercept the request for the updated asset).
 
