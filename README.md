@@ -44,7 +44,7 @@ export default defineConfig({
 
 3. That's it! A service worker that precaches all of your build's static assets will be generated. Page navigations will be served from the service worker's cache instead of making network calls, speeding up your page views and enabling offline viewing 🙌.
 
-Note that in local development a no-op service worker is generated, otherwise service workers interfere with hot module reloading (because they intercept the request for the updated asset).
+_Note that in local development a no-op service worker is generated, otherwise service workers interfere with hot module reloading (because they intercept the request for the updated asset)._
 
 ## API Overview 🛠
 
