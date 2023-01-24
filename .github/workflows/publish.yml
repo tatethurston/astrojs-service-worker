@@ -6,18 +6,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
-          cache: "npm"
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
-      - run: npm install
-      - run: npm run package:build
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm package:build
       - run: cd dist && npm publish
         env:
-          # 1. Generate a new `automation` token here:
-          # https://www.npmjs.com/settings/tatethurston/tokens
-          # 2. Upload here:
-          # https://github.com/tatethurston/astrojs-service-worker/settings/secrets/actions/new
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
