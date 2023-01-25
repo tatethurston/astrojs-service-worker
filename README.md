@@ -44,7 +44,7 @@ export default defineConfig({
 
 3. That's it! A service worker that precaches all of your build's static assets will be generated. Page navigations will be served from the service worker's cache instead of making network calls, speeding up your page views and enabling offline viewing 🙌.
 
-_Note that in local development a no-op service worker is generated, otherwise service workers interfere with hot module reloading (because they intercept the request for the updated asset)._
+_Note that when running `astro dev` a no-op service worker is generated. Service workers interfere with hot module reloading (because they intercept the request for the updated asset), so this no-op service worker clears any existing workers for the page so hot moudle reloading works as expected._
 
 ## API Overview 🛠
 
@@ -57,22 +57,6 @@ _Note that in local development a no-op service worker is generated, otherwise s
     </tr>
   </thead>
   <tbody>
-<tr>
-  <td>enableInDevelopment</td>
-<td>
-
-Enable the service worker in local development.
-
-The service worker's precaching of static files will prevent hot module reloading during development.
-
-If `false` then the service worker will not be registered and any previously installed service workers will be cleared.
-
-Defaults to `false`. Recommended: `false` for general development, `true` when testing or debugging your application's service worker.
-
-</td>
-</td>
-  <td>boolean | undefined</td>
-</tr>
 
 <tr>
   <td>registration.autoRegister</td>
@@ -114,9 +98,13 @@ Note: `injectManifest` is not supported at this time. If you would like it to be
 
 You must serve your application over HTTPS in production environments. [Service Workers must be served from the site's origin over HTTPS](https://developers.google.com/web/fundamentals/primers/service-workers).
 
-Some browsers special case `localhost`, so this is may not necessary during local development. HTTPS is _not_ handled by this library.
+Some browsers special case `localhost`, so this is may not necessary during local development. HTTPS is _not_ handled by this library. You can use a reverse proxy like [Nginx](https://www.nginx.com/) or [Caddy](https://caddyserver.com/).
 
-The service worker origin constraint means that service workers can not control pages on a different subdomain. Eg `mysite.com` can not be controlled by a service worker if that was served from a subdomain such as `mycdn.mysite.com`.
+The service worker origin constraint means that service workers can not control pages on a different subdomain. Eg `mysite.com` can not be controlled by a service worker if that was served from a subdomain such as `mycdn.mysite.com`. To learn more about how service workers work in general, read [MDN's documentation](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
+
+## Production Sites using astrojs-service-woker
+
+My blog, [tatethurston.com](https://www.tatethurston.com/). You can use this site to get a sense of the capabilities enabled by this package. If you have any questions, feel free to [open an issue](https://github.com/tatethurston/astrojs-service-worker/issues/new).
 
 ## Contributing 👫
 
