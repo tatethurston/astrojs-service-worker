@@ -46,6 +46,12 @@ export default defineConfig({
 
 _Note that when running `astro dev` a no-op service worker is generated. Service workers interfere with hot module reloading (because they intercept the request for the updated asset), so this no-op service worker clears any existing workers for the page so hot moudle reloading works as expected._
 
+## Verification 🤔 
+
+1. To view the production service worker, run `astro build && astro preview`.
+2. The service worker must first install before it intercepts any traffic. You can view the status of the service worker in Chrome by opening the dev console, clicking the `Application` tab and then clicking the `Service Workers` tab.
+3. Disable your internet connection and click around your site. Your pages will be served by the service worker. This is most obvious when you are disconnected from the internet, but even when users have an internet connection your pages will be served from the service worker and not from the network -- markedly speeding up page requests.
+
 ## API Overview 🛠
 
 <table>
@@ -98,11 +104,11 @@ Note: `injectManifest` is not supported at this time. If you would like it to be
 
 You must serve your application over HTTPS in production environments. [Service Workers must be served from the site's origin over HTTPS](https://developers.google.com/web/fundamentals/primers/service-workers).
 
-Some browsers special case `localhost`, so this is may not necessary during local development. HTTPS is _not_ handled by this library. You can use a reverse proxy like [Nginx](https://www.nginx.com/) or [Caddy](https://caddyserver.com/).
+Some browsers special case `localhost`, so this may not be necessary during local development. HTTPS is _not_ handled by this library. You can use a reverse proxy like [Nginx](https://www.nginx.com/) or [Caddy](https://caddyserver.com/) if you want to setup HTTPS for local development.
 
 The service worker origin constraint means that service workers can not control pages on a different subdomain. Eg `mysite.com` can not be controlled by a service worker if that was served from a subdomain such as `mycdn.mysite.com`. To learn more about how service workers work in general, read [MDN's documentation](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
 
-## Production Sites using astrojs-service-woker
+## Production Sites Using astrojs-service-woker
 
 My blog, [tatethurston.com](https://www.tatethurston.com/). You can use this site to get a sense of the capabilities enabled by this package. If you have any questions, feel free to [open an issue](https://github.com/tatethurston/astrojs-service-worker/issues/new).
 
