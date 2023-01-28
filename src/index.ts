@@ -1,5 +1,6 @@
 import type { AstroIntegration } from "astro";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   generateSW,
   type GenerateSWOptions,
@@ -85,7 +86,7 @@ if ('serviceWorker' in navigator) {
           );
           return;
         }
-        const out = dir.pathname;
+        const out = fileURLToPath(dir);
 
         const defaults = {
           swDest: join(out, SW_NAME),

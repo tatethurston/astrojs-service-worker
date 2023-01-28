@@ -46,7 +46,7 @@ export default defineConfig({
 
 _Note that when running `astro dev` a no-op service worker is generated. Service workers interfere with hot module reloading (because they intercept the request for the updated asset), so this no-op service worker clears any existing workers for the page so hot moudle reloading works as expected._
 
-## Verification 🤔 
+## Verification 🤔
 
 1. To view the production service worker, run `astro build && astro preview`.
 2. The service worker must first install before it intercepts any traffic. You can view the status of the service worker in Chrome by opening the dev console, clicking the `Application` tab and then clicking the `Service Workers` tab.
