@@ -90,12 +90,13 @@ if ('serviceWorker' in navigator) {
         const out = fileURLToPath(dir);
 
         const defaults = {
-          swDest: join(out, SW_NAME),
-          globDirectory: out,
+          cleanupOutdatedCaches: true,
           clientsClaim: true,
+          globDirectory: out,
+          globPatterns: ["**/*"],
           skipWaiting: true,
           sourcemap: false,
-          cleanupOutdatedCaches: true,
+          swDest: join(out, SW_NAME),
         };
 
         try {
