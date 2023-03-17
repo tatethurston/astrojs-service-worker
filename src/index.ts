@@ -74,8 +74,9 @@ if ('serviceWorker' in navigator) {
         if (!enableInDevelopment && isDevelopment) {
           injectRoute({
             pattern: `/${SW_NAME}`,
-            entryPoint: new URL("./service-worker.js.js", import.meta.url)
-              .pathname,
+            entryPoint: fileURLToPath(
+              new URL("./service-worker.js.js", import.meta.url)
+            ),
           });
         }
       },
