@@ -33,18 +33,18 @@ A minimal wrapper around [Workbox](https://developers.google.com/web/tools/workb
    - `npm install astrojs-service-worker` or `yarn add astrojs-service-worker`
 2. Add `astrojs-service-worker` to your [astro.config.mjs](https://docs.astro.build/en/reference/configuration-reference/) integrations:
 
-```diff
-import { defineConfig } from "astro/config";
-+ import serviceWorker from "astrojs-service-worker";
+   ```diff
+   import { defineConfig } from "astro/config";
+   + import serviceWorker from "astrojs-service-worker";
 
-export default defineConfig({
-+  integrations: [serviceWorker()],
-});
-```
+   export default defineConfig({
+   +  integrations: [serviceWorker()],
+   });
+   ```
 
 3. That's it! A service worker that precaches all of your build's static assets will be generated. Page navigations will be served from the service worker's cache instead of making network calls, speeding up your page views and enabling offline viewing 🙌.
 
-_Note that when running `astro dev` a no-op service worker is generated. Service workers interfere with hot module reloading (because they intercept the request for the updated asset), so this no-op service worker clears any existing workers for the page so hot moudle reloading works as expected._
+_Note that when running `astro dev` a no-op service worker is generated. Service workers interfere with hot module reloading (because they intercept the request for the updated asset), so this no-op service worker clears any existing workers for the page so hot module reloading works as expected._
 
 ## Verification 🤔
 
