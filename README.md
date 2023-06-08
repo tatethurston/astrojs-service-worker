@@ -107,9 +107,11 @@ Example:
    import serviceWorker from "astrojs-service-worker";
 
    export default defineConfig({
-     integrations: [serviceWorker({ 
-+ workbox: { inlineWorkboxRuntime: true }
-})],
+     integrations: [
+       serviceWorker({ 
++        workbox: { inlineWorkboxRuntime: true }
+       })
+     ],
    });
    ```
    
