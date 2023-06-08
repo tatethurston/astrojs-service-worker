@@ -100,6 +100,19 @@ Note: `injectManifest` is not supported at this time. If you would like it to be
   </tbody>
 </table>
 
+Example:
+
+```diff
+   import { defineConfig } from "astro/config";
+   import serviceWorker from "astrojs-service-worker";
+
+   export default defineConfig({
+     integrations: [serviceWorker({ 
++ workbox: { inlineWorkboxRuntime: true }
+})],
+   });
+   ```
+   
 ## Common Service Worker Pitfalls ⚠️
 
 You must serve your application over HTTPS in production environments. [Service Workers must be served from the site's origin over HTTPS](https://developers.google.com/web/fundamentals/primers/service-workers).
