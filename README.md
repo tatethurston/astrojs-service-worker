@@ -108,13 +108,13 @@ Example:
 
    export default defineConfig({
      integrations: [
-       serviceWorker({ 
+       serviceWorker({
 +        workbox: { inlineWorkboxRuntime: true }
        })
      ],
    });
-   ```
-   
+```
+
 ## Common Service Worker Pitfalls ⚠️
 
 You must serve your application over HTTPS in production environments. [Service Workers must be served from the site's origin over HTTPS](https://developers.google.com/web/fundamentals/primers/service-workers).

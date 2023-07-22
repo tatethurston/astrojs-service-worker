@@ -7,7 +7,7 @@ export async function get() {
     fileURLToPath(new URL("./noop-service-worker.js", import.meta.url)),
     {
       encoding: "utf8",
-    }
+    },
   );
   return {
     body: sw,

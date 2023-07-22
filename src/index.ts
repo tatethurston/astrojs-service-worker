@@ -45,7 +45,7 @@ export interface ServiceWorkerConfig {
 }
 
 function isInjectManifest(
-  workboxConfig: InjectManifestOptions | GenerateSWOptions | undefined
+  workboxConfig: InjectManifestOptions | GenerateSWOptions | undefined,
 ): workboxConfig is InjectManifestOptions {
   return !!workboxConfig && "swSrc" in workboxConfig;
 }
@@ -66,7 +66,7 @@ const createPlugin = (options: ServiceWorkerConfig = {}): AstroIntegration => {
             `\
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/${SW_NAME}');
-}`
+}`,
           );
         }
         const enableInDevelopment = options.enableInDevelopment ?? false;
@@ -75,7 +75,7 @@ if ('serviceWorker' in navigator) {
           injectRoute({
             pattern: `/${SW_NAME}`,
             entryPoint: fileURLToPath(
-              new URL("./service-worker.js.js", import.meta.url)
+              new URL("./service-worker.js.js", import.meta.url),
             ),
           });
         }
@@ -83,7 +83,7 @@ if ('serviceWorker' in navigator) {
       "astro:build:done": async ({ dir }) => {
         if (isInjectManifest(options.workbox)) {
           console.error(
-            "[astrojs-service-worker] injectManifest is not supported at this time. If you would like it to be supported, please open an issue at https://github.com/tatethurston/astrojs-service-worker/issues/new"
+            "[astrojs-service-worker] injectManifest is not supported at this time. If you would like it to be supported, please open an issue at https://github.com/tatethurston/astrojs-service-worker/issues/new",
           );
           return;
         }
