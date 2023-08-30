@@ -58,14 +58,20 @@ const createPlugin = (options: ServiceWorkerConfig = {}): AstroIntegration => {
   return {
     name: PKG_NAME,
     hooks: {
-      "astro:config:setup": ({ command, injectRoute, injectScript }) => {
+      "astro:config:setup": ({
+        command,
+        injectRoute,
+        injectScript,
+        config,
+      }) => {
         const autoRegister = options.registration?.autoRegister ?? true;
         if (autoRegister) {
+          const swPath = join(config.base, SW_NAME);
           injectScript(
             "head-inline",
             `\
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/${SW_NAME}');
+  navigator.serviceWorker.register('${swPath}');
 }`,
           );
         }
