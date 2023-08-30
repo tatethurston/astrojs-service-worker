@@ -14,7 +14,12 @@
     "sourceMap": false,
     "strict": true,
     "declaration": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ]
   },
   "include": ["src/**/*"]
 }

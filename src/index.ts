@@ -64,9 +64,9 @@ const createPlugin = (options: ServiceWorkerConfig = {}): AstroIntegration => {
         injectScript,
         config,
       }) => {
+        const swPath = join(config.base, SW_NAME);
         const autoRegister = options.registration?.autoRegister ?? true;
         if (autoRegister) {
-          const swPath = join(config.base, SW_NAME);
           injectScript(
             "head-inline",
             `\
@@ -79,7 +79,7 @@ if ('serviceWorker' in navigator) {
         const isDevelopment = command === "dev";
         if (!enableInDevelopment && isDevelopment) {
           injectRoute({
-            pattern: `/${SW_NAME}`,
+            pattern: swPath,
             entryPoint: fileURLToPath(
               new URL("./service-worker.js.js", import.meta.url),
             ),
