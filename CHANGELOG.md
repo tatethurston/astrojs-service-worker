@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0
+
+- Fix `entryPoint` deprecation in Astro 4. This package now requires Astro v4 or later.
+
 ## 1.1.0
 
 - Adds support for [base](https://docs.astro.build/en/reference/configuration-reference/#base). Thanks @ntsd.
