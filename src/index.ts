@@ -80,7 +80,7 @@ if ('serviceWorker' in navigator) {
         if (!enableInDevelopment && isDevelopment) {
           injectRoute({
             pattern: swPath,
-            entryPoint: fileURLToPath(
+            entrypoint: fileURLToPath(
               new URL("./service-worker.js.js", import.meta.url),
             ),
           });
