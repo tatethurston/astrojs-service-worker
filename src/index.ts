@@ -37,7 +37,7 @@ export interface ServiceWorkerConfig {
     autoRegister?: boolean;
   };
   /**
-   * Options passed to `worbox-build`. See all available configuration options [here](https://developer.chrome.com/docs/workbox/modules/workbox-build/)
+   * Options passed to `workbox-build`. See all available configuration options [here](https://developer.chrome.com/docs/workbox/modules/workbox-build/)
    *
    * Defaults to `GenerateSW` which will generate a service worker.
    */
