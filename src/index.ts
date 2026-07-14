@@ -41,7 +41,7 @@ export interface ServiceWorkerConfig {
    *
    * Defaults to `GenerateSW` which will generate a service worker.
    *
-   * - `swDest` defaults to `service-worker.js`
+   * - `swDest` defaults to `service-worker.js` inside astro's output directory
    * - `globDirectory` defaults to the astro's output directory
    */
   workbox?:
