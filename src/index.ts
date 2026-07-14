@@ -40,12 +40,19 @@ export interface ServiceWorkerConfig {
    * Options passed to `workbox-build`. See all available configuration options [here](https://developer.chrome.com/docs/workbox/modules/workbox-build/)
    *
    * Defaults to `GenerateSW` which will generate a service worker.
+   *
+   * - `swDest` defaults to `service-worker.js`
+   * - `globDirectory` defaults to the astro's output directory
    */
-  workbox?: InjectManifestOptions | GenerateSWOptions;
+  workbox?:
+    | Optional<InjectManifestOptions, "swDest" | "globDirectory">
+    | Optional<GenerateSWOptions, "swDest" | "globDirectory">;
 }
 
+type Optional<T, K extends keyof T> = Pick<T, K> & Omit<T, K>;
+
 function isInjectManifest(
-  workboxConfig: InjectManifestOptions | GenerateSWOptions | undefined,
+  workboxConfig: ServiceWorkerConfig["workbox"],
 ): workboxConfig is InjectManifestOptions {
   return !!workboxConfig && "swSrc" in workboxConfig;
 }
