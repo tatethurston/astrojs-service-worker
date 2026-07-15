@@ -10,7 +10,9 @@ export async function GET() {
     },
   );
 
+  // eslint-disable-next-line no-undef
   const headers = new Headers();
   headers.append("content-type", "application/javascript;charset=utf-8");
+  // eslint-disable-next-line no-undef
   return new Response(sw, { headers });
 }
