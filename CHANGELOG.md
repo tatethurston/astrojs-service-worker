@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+
+- Fix: remove unnecessary `swDest` requirement from type signature. Thanks @Legend-Master!
+
 ## 2.0.0
 
 - Fix `entryPoint` deprecation in Astro 4. This package now requires Astro v4 or later.
