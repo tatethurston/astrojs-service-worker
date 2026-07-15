@@ -5,7 +5,6 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
     "noEmitOnError": false,
     "outDir": "dist",
     "resolveJsonModule": true,
