@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/tatethurston/astrojs-service-worker"
   },
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
@@ -15,34 +16,35 @@
     "lint:fix": "prettier --write . && prettier-package-json --write '{,example/}package.json' && eslint --fix .",
     "package:build": "npm run clean && npm run build && npm run package:prune && npm run package:copy:files",
     "package:copy:files": "cp ./LICENSE ./README.md dist/ && cp ./public.package.json dist/package.json",
-    "package:prune": "find dist -name test.* -delete",
+    "package:prune": "find dist -name '*.test.*' -delete",
     "prepare": "husky install",
     "test": "jest",
     "test:ci": "jest --coverage",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "astro": "^4.0.3",
-    "workbox-build": "^7.0.0"
+    "astro": "^7.0.9",
+    "workbox-build": "^7.4.1"
   },
   "devDependencies": {
-    "@astrojs/ts-plugin": "^1.3.1",
-    "@babel/preset-env": "^7.23.5",
-    "@babel/preset-typescript": "^7.23.3",
-    "@types/jest": "^29.5.11",
-    "@types/node": "^20.10.3",
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
-    "babel-loader": "^9.1.3",
+    "@astrojs/ts-plugin": "^1.10.10",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/preset-typescript": "^8.0.1",
+    "@eslint/js": "^10.0.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^26.1.1",
+    "@typescript-eslint/eslint-plugin": "^8.64.0",
+    "@typescript-eslint/parser": "^8.64.0",
+    "babel-loader": "^10.1.1",
     "codecov": "^3.8.3",
-    "esbuild": "^0.19.8",
-    "eslint": "^8.55.0",
-    "eslint-config-prettier": "^9.1.0",
-    "husky": "^8.0.3",
-    "jest": "^29.7.0",
-    "prettier": "^3.1.0",
+    "esbuild": "^0.28.1",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "jest": "^30.4.2",
+    "prettier": "^3.9.5",
     "prettier-package-json": "^2.8.0",
-    "typescript": "^5.3.3"
+    "typescript": "^6.0.3"
   },
   "packageManager": "pnpm@8.11.0"
 }
