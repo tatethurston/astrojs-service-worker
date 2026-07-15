@@ -2,6 +2,10 @@ name: Publish NPM Package
 on:
   release:
     types: [created]
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,5 +20,3 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm package:build
       - run: (cp CHANGELOG.md README.md dist) && cd dist && npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
