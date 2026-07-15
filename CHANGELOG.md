@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2
+
+- Fix: `swDest` fix was incomplete. _Now_ the unnecessary `swDest` requirement is removed from the type signature.
+
 ## 2.0.1
 
 - Fix: remove unnecessary `swDest` requirement from type signature. Thanks @Legend-Master!
