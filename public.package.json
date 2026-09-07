@@ -12,7 +12,7 @@
   "sideEffects": false,
   "types": "index.d.ts",
   "dependencies": {
-    "workbox-build": "^6.5.4"
+    "workbox-build": "^7.4.1"
   },
   "peerDependencies": {
     "astro": ">=4.0.0"
