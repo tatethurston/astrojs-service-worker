@@ -23,28 +23,28 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "astro": "^7.0.9",
+    "astro": "^7.3.2",
     "workbox-build": "^7.4.1"
   },
   "devDependencies": {
-    "@astrojs/ts-plugin": "^1.10.10",
-    "@babel/preset-env": "^8.0.2",
+    "@astrojs/ts-plugin": "^1.10.11",
+    "@babel/preset-env": "^8.0.5",
     "@babel/preset-typescript": "^8.0.1",
     "@eslint/js": "^10.0.1",
     "@types/jest": "^30.0.0",
-    "@types/node": "^26.1.1",
-    "@typescript-eslint/eslint-plugin": "^8.64.0",
-    "@typescript-eslint/parser": "^8.64.0",
+    "@types/node": "^22.20.3",
+    "@typescript-eslint/eslint-plugin": "^8.70.0",
+    "@typescript-eslint/parser": "^8.70.0",
     "babel-loader": "^10.1.1",
     "codecov": "^3.8.3",
-    "esbuild": "^0.28.1",
-    "eslint": "^10.7.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
-    "jest": "^30.4.2",
-    "prettier": "^3.9.5",
+    "jest": "^30.5.1",
+    "prettier": "^3.9.6",
     "prettier-package-json": "^2.8.0",
     "typescript": "^6.0.3"
   },
-  "packageManager": "pnpm@8.11.0"
+  "packageManager": "pnpm@12.4.2+sha512.08adc6613180275c7c9edada39dcf08c9c61ad4e7eaf330a4f3461f102b0f907423454d117f98e72d47fef0616070644d7bffc973a6a57f5090a6d7c368b07c9"
 }

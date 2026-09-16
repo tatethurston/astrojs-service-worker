@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.3
+
+- Updates workbox-build to latest.
+
 ## 2.0.2
 
 - Fix: `swDest` fix was incomplete. _Now_ the unnecessary `swDest` requirement is removed from the type signature.
